@@ -124,7 +124,7 @@
     if ([self.tile.name isEqualToString:@"Tile 12" ] && self.bossDidAttack == NO) {
         [self disableDirectionalArrorsForTile:self.tile];
         self.actionsButton.enabled = NO;
-        [self performSelector:@selector(bossAttack) withObject:nil afterDelay:5.0];
+        [self performSelector:@selector(bossAttack) withObject:nil afterDelay:2.0];
     }
 }
 
