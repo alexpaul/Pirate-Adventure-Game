@@ -5,12 +5,19 @@
 //  Created by Alex Paul on 10/17/13.
 //  Copyright (c) 2013 Alex Paul. All rights reserved.
 //
+//  |Tile 3|Tile 6|Tile 9|Tile 12
+//  -----------------------------
+//  |Tile 2|Tile 5|Tile 8|Tile 11
+//  -----------------------------
+//  |Tile 1|Tile 4|Tile 7|Tile 10
+//
+//  Column 1: 0,0, 0,1, 0,2, Column 2: 1,0, 1,1, 1,2 Column 3: 2,0, 2,1, 2,2 Column 4: 3,0, 3,1, 3,2
 //
 //  This is a coordinate system game. Users are able to navigate to different "Tiles"
-//  by pressing one of 4 directional arrows.
+//  by pressing one of 4 directional arrows. Objective of the game is to kill the Pirate Boss.
 
 #import "PAGViewController.h"
-#import "Factory.h" // + (NSArray *)tileObjects (Array to Tile Objects)
+#import "Factory.h" // -(NSArray *)tileObjects (Array to Tile Objects)
 #import "Tile.h" // background, story, point
 #import "Character.h" // health, damage, weapon, armorStat
 #import "Weapon.h"
@@ -100,6 +107,16 @@
     self.weaponLabel.text = self.character.weapon.name;
     self.armorLabel.text = self.character.armor.name;
     
+    [self alertViewForTheEndOfTheGame]; // Sets up an Alert View to show whether the Protagonist or Villain prevailed
+    
+    if (self.boss.health == 5) {
+        [self.actionsButton setTitle:@"Finish Him" forState:UIControlStateNormal];
+    }
+}
+
+// Sets up an Alert View to show whether the Protagonist or Villain prevailed
+- (void)alertViewForTheEndOfTheGame
+{
     if (self.character.health < 0) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Game Over" message:@"You got defeated by the Pirate Boss." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alertView show];
@@ -107,9 +124,6 @@
     if (self.boss.health == 0) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"You Win!" message:@"You successfully completed all the tasks and defeated the Pirate Boss." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alertView show];
-    }
-    if (self.boss.health == 5) {
-        [self.actionsButton setTitle:@"Finish Him" forState:UIControlStateNormal];
     }
 }
 
