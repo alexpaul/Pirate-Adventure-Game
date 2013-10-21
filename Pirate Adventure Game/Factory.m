@@ -73,7 +73,7 @@
     tile5.name = @"Tile 5";
     tile5.validMovements = @[@"North", @"South", @"East", @"West"];
     tile5.healthEffect = 100;
-    tile5.actionButtonName = @"Attack";
+    tile5.actionButtonName = @"Kill The Beast";
 
     Tile *tile6 = [[Tile alloc] init];
     tile6.backgroundImage = [UIImage imageNamed:@"PirateFriendlyDock.jpg"];
